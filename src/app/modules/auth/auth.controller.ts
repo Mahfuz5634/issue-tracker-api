@@ -1,7 +1,8 @@
 import type { Request, Response } from "express";
 import { sendErrorResponse, sendSuccessResponse } from "../../utils/response";
 import { AuthService } from "./auth.service";
-import { loginSchema, signupSchema } from "../auth.validate";
+import { loginSchema, signupSchema } from "./auth.validate";
+
 
 export const AuthController = {
   async signup(req: Request, res: Response) {

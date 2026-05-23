@@ -2,9 +2,21 @@
   "info": {
     "name": "DevPulse Backend API",
     "_postman_id": "a1b2c3d4-e5f6-7890-abcd-1234567890ab",
-    "description": "Postman collection for DevPulse Backend API",
+    "description": "Postman collection for DevPulse Backend API. Set the raw JWT token from the login response in the jwt_token variable.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:5000",
+      "type": "string"
+    },
+    {
+      "key": "jwt_token",
+      "value": "",
+      "type": "string"
+    }
+  ],
   "item": [
     {
       "name": "Signup",
@@ -21,10 +33,8 @@
           "raw": "{\n  \"name\": \"Mahfuz\",\n  \"email\": \"mahfuz@gmail.com\",\n  \"password\": \"123456\",\n  \"role\": \"contributor\"\n}"
         },
         "url": {
-          "raw": "http://localhost:5000/api/auth/signup",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "5000",
+          "raw": "{{base_url}}/api/auth/signup",
+          "host": ["{{base_url}}"],
           "path": ["api", "auth", "signup"]
         }
       }
@@ -44,10 +54,8 @@
           "raw": "{\n  \"email\": \"mahfuz@gmail.com\",\n  \"password\": \"123456\"\n}"
         },
         "url": {
-          "raw": "http://localhost:5000/api/auth/login",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "5000",
+          "raw": "{{base_url}}/api/auth/login",
+          "host": ["{{base_url}}"],
           "path": ["api", "auth", "login"]
         }
       }
@@ -63,7 +71,7 @@
           },
           {
             "key": "Authorization",
-            "value": "YOUR_JWT_TOKEN"
+            "value": "{{jwt_token}}"
           }
         ],
         "body": {
@@ -71,10 +79,8 @@
           "raw": "{\n  \"title\": \"Database timeout under heavy load\",\n  \"description\": \"Database pool gets exhausted after concurrent requests causing timeout issues.\",\n  \"type\": \"bug\"\n}"
         },
         "url": {
-          "raw": "http://localhost:5000/api/issues",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "5000",
+          "raw": "{{base_url}}/api/issues",
+          "host": ["{{base_url}}"],
           "path": ["api", "issues"]
         }
       }
@@ -84,10 +90,8 @@
       "request": {
         "method": "GET",
         "url": {
-          "raw": "http://localhost:5000/api/issues",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "5000",
+          "raw": "{{base_url}}/api/issues",
+          "host": ["{{base_url}}"],
           "path": ["api", "issues"]
         }
       }
@@ -97,10 +101,8 @@
       "request": {
         "method": "GET",
         "url": {
-          "raw": "http://localhost:5000/api/issues?type=bug",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "5000",
+          "raw": "{{base_url}}/api/issues?type=bug",
+          "host": ["{{base_url}}"],
           "path": ["api", "issues"],
           "query": [
             {
@@ -116,10 +118,8 @@
       "request": {
         "method": "GET",
         "url": {
-          "raw": "http://localhost:5000/api/issues?status=open",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "5000",
+          "raw": "{{base_url}}/api/issues?status=open",
+          "host": ["{{base_url}}"],
           "path": ["api", "issues"],
           "query": [
             {
@@ -135,10 +135,8 @@
       "request": {
         "method": "GET",
         "url": {
-          "raw": "http://localhost:5000/api/issues?sort=oldest",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "5000",
+          "raw": "{{base_url}}/api/issues?sort=oldest",
+          "host": ["{{base_url}}"],
           "path": ["api", "issues"],
           "query": [
             {
@@ -154,10 +152,8 @@
       "request": {
         "method": "GET",
         "url": {
-          "raw": "http://localhost:5000/api/issues?type=bug&status=open&sort=newest",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "5000",
+          "raw": "{{base_url}}/api/issues?type=bug&status=open&sort=newest",
+          "host": ["{{base_url}}"],
           "path": ["api", "issues"],
           "query": [
             {
@@ -181,10 +177,8 @@
       "request": {
         "method": "GET",
         "url": {
-          "raw": "http://localhost:5000/api/issues/1",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "5000",
+          "raw": "{{base_url}}/api/issues/1",
+          "host": ["{{base_url}}"],
           "path": ["api", "issues", "1"]
         }
       }
@@ -200,7 +194,7 @@
           },
           {
             "key": "Authorization",
-            "value": "YOUR_JWT_TOKEN"
+            "value": "{{jwt_token}}"
           }
         ],
         "body": {
@@ -208,10 +202,8 @@
           "raw": "{\n  \"title\": \"Updated database timeout issue\",\n  \"description\": \"Updated detailed reproduction steps for timeout issue under concurrent requests.\",\n  \"type\": \"bug\"\n}"
         },
         "url": {
-          "raw": "http://localhost:5000/api/issues/1",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "5000",
+          "raw": "{{base_url}}/api/issues/1",
+          "host": ["{{base_url}}"],
           "path": ["api", "issues", "1"]
         }
       }
@@ -223,14 +215,12 @@
         "header": [
           {
             "key": "Authorization",
-            "value": "YOUR_JWT_TOKEN"
+            "value": "{{jwt_token}}"
           }
         ],
         "url": {
-          "raw": "http://localhost:5000/api/issues/1",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "5000",
+          "raw": "{{base_url}}/api/issues/1",
+          "host": ["{{base_url}}"],
           "path": ["api", "issues", "1"]
         }
       }
