@@ -1,14 +1,13 @@
 import type { Request, Response } from "express";
 import { AuthService } from "./auth.service";
-
-
-
-
+import { loginSchema, signupSchema } from "./auth.validate";
 
 export const AuthController={
      async signup(req: Request,res:Response){
         try{
-          const user = await AuthService.signup(req.body);
+
+          const validatedData=signupSchema.parse(req.body);
+          const user = await AuthService.signup(validatedData);
 
           res.status(201).json({
             success:true,
@@ -27,7 +26,9 @@ export const AuthController={
 
      async login(req:Request,res:Response){
         try{
-            const result=await AuthService.login(req.body);
+
+            const validatedData=loginSchema.parse(req.body);
+            const result=await AuthService.login(validatedData);
 
             res.status(200).json({
                 success:true,
