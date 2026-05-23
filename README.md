@@ -1,6 +1,6 @@
 # Issue Tracker Backend API
 
-A Node.js + TypeScript backend for managing issue reports with authentication, role-based access control, filtering, sorting, and Postman-ready API examples.
+A Express.js + TypeScript backend for managing issue reports with authentication, role-based access control, filtering, sorting, and Postman-ready API examples.
 
 ## ✨ Features
 
