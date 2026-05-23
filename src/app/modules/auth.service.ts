@@ -5,7 +5,8 @@ import jwt from "jsonwebtoken";
 const SALT_ROUND=Number(process.env.BCRYPT_SALT_ROUNDS);
 const JWT_SECRET=process.env.JWT_SECRET as string;
 
-export const authService={
+export const AuthService={
+    //signup function
     async signup(playload:any){
         const hashedPassword= await bcrypt.hash(playload.password,SALT_ROUND);
 
@@ -23,7 +24,8 @@ export const authService={
         );
         return result.rows[0];
     },
-
+    
+    //login function
     async login(playload:any){
         const userRes= await db.query(
             `SELECT * FROM users WHERE email= $1

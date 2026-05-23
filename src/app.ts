@@ -1,6 +1,7 @@
 import  type { Application, Request, Response } from "express";
 import express from "express"
 import cors from "cors"
+import router from "./app/modules/auth.route";
 
 const app:Application=express();
 
@@ -14,4 +15,6 @@ app.get("/",(req:Request,res:Response)=>{
      })
 });
 
+
+app.use("/api/auth",router);
 export default app;
