@@ -1,23 +1,20 @@
-import type { Response } from "express";
+import type { Request, Response } from "express";
+import { sendErrorResponse, sendSuccessResponse } from "../../utils/response";
 import { IssueService } from "./issue.service";
-
 
 export const IssueController = {
   async createIssue(req: any, res: Response) {
     try {
-      const issue = await IssueService.createIssue(
-        req.body,
-        req.user.id
-      );
+      const issue = await IssueService.createIssue(req.body, req.user.id);
 
-      res.status(201).json({
-        success: true,
+      return sendSuccessResponse(res, {
+        statusCode: 201,
         message: "Issue created successfully",
         data: issue,
       });
     } catch (error: any) {
-      res.status(400).json({
-        success: false,
+      return sendErrorResponse(res, {
+        statusCode: 400,
         message: error.message,
       });
     }
@@ -25,16 +22,15 @@ export const IssueController = {
 
   async getAllIssues(req: Request, res: Response) {
     try {
-      const issues =
-        await IssueService.getAllIssues(req.query);
+      const issues = await IssueService.getAllIssues(req.query);
 
-      res.status(200).json({
-        success: true,
+      return sendSuccessResponse(res, {
+        statusCode: 200,
         data: issues,
       });
     } catch (error: any) {
-      res.status(500).json({
-        success: false,
+      return sendErrorResponse(res, {
+        statusCode: 500,
         message: error.message,
       });
     }
@@ -42,18 +38,15 @@ export const IssueController = {
 
   async getSingleIssue(req: Request, res: Response) {
     try {
-      const issue =
-        await IssueService.getSingleIssue(
-          Number(req.params.id)
-        );
+      const issue = await IssueService.getSingleIssue(Number(req.params.id));
 
-      res.status(200).json({
-        success: true,
+      return sendSuccessResponse(res, {
+        statusCode: 200,
         data: issue,
       });
     } catch (error: any) {
-      res.status(404).json({
-        success: false,
+      return sendErrorResponse(res, {
+        statusCode: 404,
         message: error.message,
       });
     }
@@ -61,21 +54,20 @@ export const IssueController = {
 
   async updateIssue(req: any, res: Response) {
     try {
-      const updatedIssue =
-        await IssueService.updateIssue(
-          Number(req.params.id),
-          req.body,
-          req.user
-        );
+      const updatedIssue = await IssueService.updateIssue(
+        Number(req.params.id),
+        req.body,
+        req.user,
+      );
 
-      res.status(200).json({
-        success: true,
+      return sendSuccessResponse(res, {
+        statusCode: 200,
         message: "Issue updated successfully",
         data: updatedIssue,
       });
     } catch (error: any) {
-      res.status(400).json({
-        success: false,
+      return sendErrorResponse(res, {
+        statusCode: 400,
         message: error.message,
       });
     }
@@ -83,17 +75,15 @@ export const IssueController = {
 
   async deleteIssue(req: Request, res: Response) {
     try {
-      await IssueService.deleteIssue(
-        Number(req.params.id)
-      );
+      await IssueService.deleteIssue(Number(req.params.id));
 
-      res.status(200).json({
-        success: true,
+      return sendSuccessResponse(res, {
+        statusCode: 200,
         message: "Issue deleted successfully",
       });
     } catch (error: any) {
-      res.status(404).json({
-        success: false,
+      return sendErrorResponse(res, {
+        statusCode: 404,
         message: error.message,
       });
     }
