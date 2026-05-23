@@ -19,7 +19,7 @@ router.get("/:id", IssueController.getSingleIssue);
 router.patch(
   "/:id",
   auth,
-  roleCheck(["contributor", "maintainer"]),
+  roleCheck(["maintainer"]),
   IssueController.updateIssue
 );
 
