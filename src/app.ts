@@ -13,7 +13,7 @@ app.use(express.json());
 app.get("/", (req: Request, res: Response) => {
   res.send({
     success: true,
-    message: "Server Is Running",
+    message: "Issue Tracker Server Is Running",
   });
 });
 
